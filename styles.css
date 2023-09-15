@@ -20,3 +20,8 @@ body::before{
     background-size: cover;
     background-position: center;
 }
+
+body {
+    display: flex;
+    flex-direction: column;
+}
