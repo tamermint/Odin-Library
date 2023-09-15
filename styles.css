@@ -15,6 +15,7 @@ body::before{
     width: 100%;
     z-index: -1;      /*The pseudoelement is rendered below actual content*/
     background-image: url(./assets/asgardianlibrary.jpg);
+    opacity: 0.8;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
