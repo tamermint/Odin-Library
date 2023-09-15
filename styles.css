@@ -1,0 +1,21 @@
+* {
+    font-family: 'Playfair Display', serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+}
+
+body::before{
+    content: '';      /*The body's before pseudoelement has 0 content */
+    position: fixed;  /*Using fixed to  make sure it doesn't move when page is scrolled*/
+    top: 0;
+    left: 0;
+    height: 100%;     /*Pseudoelement takes full height and width of the viewport*/
+    width: 100%;
+    z-index: -1;      /*The pseudoelement is rendered below actual content*/
+    background-image: url(./assets/asgardianlibrary.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
