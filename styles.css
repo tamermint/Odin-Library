@@ -21,6 +21,11 @@ body::before{
     background-position: center;
 }
 
+h1 {
+    margin-top: 1em;
+    font-weight: 900;  
+}
+
 body {
     display: flex;
     flex-direction: column;
@@ -29,6 +34,12 @@ body {
 
 h3 {
     text-align: center;
+    font-size: larger;
+    margin-top: 2em;
+    padding: 2rem;
+    
+    text-wrap: wrap;
+    line-height: 2em;
 }
 
 .body-grid {
@@ -37,9 +48,10 @@ h3 {
     grid-template-rows: 1fr 1fr 1fr;
     grid-template-areas: 
         "grid-book grid-book book-stat"
-        "grid-book grid-book book-stat"
+        "grid-book grid-book new-btn"
         "grid-book grid-book new-btn";
     margin-top: 2em;
+    gap: 2rem;
 }
 
 #grid-book {
@@ -47,22 +59,46 @@ h3 {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
+    gap: 2rem;
 }
 
 #book-stat {
     grid-area: book-stat;
-    border: 1px solid black;
+    padding: 2rem;
+    text-align: left;
+    text-wrap: wrap;
+    line-height: 2em;
+    background-color: gold;
+    border-radius: 20px;
+    box-shadow: 0 0 2px 2px gold;
 }
 
 #new-btn {
     grid-area: new-btn;
-    border: 1px solid black;
+    align-items: center;
+    justify-self: center;
+    padding: 2em;
+}
+
+#new-btn > button {
+    padding: 1em;
+    border-radius: 10px 10px 10px 10px;
+    border-width: 0;
+    background-color: gold;
+    box-shadow: 0 0 2px 2px gold;
 }
 
 .book {
-    border: 1px solid black;
-    width: 25rem;
-    height: 25rem;
+    width: 20rem;
+    height: 20rem;
+    gap: 5rem;
+    padding: 2rem;
+    text-align: left;
+    text-wrap: wrap;
+    line-height: 2em;
+    background-color: gold;
+    border-radius: 25px;
+    box-shadow: 0 0 2px 2px gold;
 }
 
 #footer-text {
@@ -72,18 +108,21 @@ h3 {
     text-decoration: none;
     padding: 1em;
     vertical-align: middle;
+    
 }
 a {
     text-decoration: none;
     color: black;
     text-align: center;
     vertical-align: middle;
+    
 }
 a:visited {
     text-decoration: none;
     color: black;   
     text-align: center;
     vertical-align: middle;
+    
 }
 
 #footer-git{
