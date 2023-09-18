@@ -24,4 +24,68 @@ body::before{
 body {
     display: flex;
     flex-direction: column;
+    align-items: center;
+}
+
+h3 {
+    text-align: center;
+}
+
+.body-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-areas: 
+        "grid-book grid-book book-stat"
+        "grid-book grid-book book-stat"
+        "grid-book grid-book new-btn";
+    margin-top: 2em;
+}
+
+#grid-book {
+    grid-area: grid-book;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+}
+
+#book-stat {
+    grid-area: book-stat;
+    border: 1px solid black;
+}
+
+#new-btn {
+    grid-area: new-btn;
+    border: 1px solid black;
+}
+
+.book {
+    border: 1px solid black;
+    width: 25rem;
+    height: 25rem;
+}
+
+#footer-text {
+    margin-top: 2em;
+    align-items: center;
+    font-size: larger;
+    text-decoration: none;
+    padding: 1em;
+    vertical-align: middle;
+}
+a {
+    text-decoration: none;
+    color: black;
+    text-align: center;
+    vertical-align: middle;
+}
+a:visited {
+    text-decoration: none;
+    color: black;   
+    text-align: center;
+    vertical-align: middle;
+}
+
+#footer-git{
+    vertical-align: sub;
 }
