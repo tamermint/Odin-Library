@@ -1,3 +1,4 @@
+document.addEventListener("DOMContentLoaded", function() {
 //The script will have the logic to add books, remove books, change status of books
 //The book grid will first be made dynamic in the .css file
 
@@ -20,11 +21,11 @@ function modalLogic() {
     const btn = document.querySelector('#new-btn');
     const span = document.querySelector('.close');
 
-    btn.click = function() {
+    btn.onclick = function() {
         modal.style.display = "block";
     }
 
-    span.click = function() {
+    span.onclick = function() {
         modal.style.display = "none";
     }
 
@@ -102,8 +103,9 @@ function windowButtonEventListeners() {
         }
     })
 }
-
 modalLogic();
 displayBooks(odinLibrary);
 windowButtonEventListeners();
+});
+
 
