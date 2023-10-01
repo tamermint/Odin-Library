@@ -2,18 +2,48 @@
 //The book grid will first be made dynamic in the .css file
 
 const odinLibrary = []; //variable for the collection of books
-const bookGrid = document.querySelector('grid-book');
-const book = document.querySelectorAll('book');
-const bookCounter = document.querySelector('book-stat');
-const changeBtn = document.querySelectorAll('book-stat-btn');
-const removeBtn = document.querySelectorAll('book-remove-btn');
+const bookGrid = document.querySelector('#grid-book');
+const book = document.querySelectorAll('.book');
+const bookCounter = document.querySelector('.book-stat');
 
-//Creating a constructor to add book everytime a function to add a book is called
+
+//Creating a constructor to create a book everytime a function to add a book is called
 function Book (name, author, pages, read) {
     this.bookName = name;
     this.bookAuthor = author;
     this.bookPages = pages;
     this.readStatus = read;
+}
+
+function modalLogic() {
+    const modal = document.getElementById('bookModal');
+    const btn = document.querySelector('#new-btn');
+    const span = document.querySelector('.close');
+
+    btn.click = function() {
+        modal.style.display = "block";
+    }
+
+    span.click = function() {
+        modal.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+        if(event.target == modal) {
+           modal.style.display = "none";
+        }
+    }
+    document.getElementById('bookForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const name = document.getElementById('name').value;
+        const author = document.getElementById('author').value;
+        const pages = document.getElementById('pages').value;
+        const read = document.getElementById('read').value;
+        const newBook = new Book(name, author, pages, read);
+        addBook(newBook);
+        displayBooks(odinLibrary);
+        modal.style.display = "none";
+    })
 }
 
 function addBook (book) {                 //function to add book to the odinLibrary
@@ -22,30 +52,58 @@ function addBook (book) {                 //function to add book to the odinLibr
 }
 
 function displayBooks(odinLibrary) {        //function to display the odinLibrary
+    bookGrid.innerHTML = '';   //clear the grid first
     for (i = 0; i < odinLibrary.length; i++) {
-        book.innerHTML = `Name: ${odinLibrary[i].name}`;
-        book.innerHTML = '<br />';
-        book.innerHTML = `Author: ${odinLibrary[i].author}`;
-        book.innerHTML = '<br />';
-        book.innerHTML = `Pages: ${odinLibrary[i].pages}`;
-        book.innerHTML = '<br />';
-        book.innerHTML = `Read: ${odinLibrary[i].read}`;
-        book.innerHTML = '<br />';
-        book.appendChild(changeBtn);
-        book.appendChild(removeBtn);
-        bookGrid.appendChild(book);
+        const bookDiv = document.createElement('div');
+        bookDiv.classList.add('book');
+        bookDiv.innerHTML = `
+                Name: ${odinLibrary[i].bookName}<br>
+                Author: ${odinLibrary[i].bookAuthor}<br>
+                Pages: ${odinLibrary[i].bookPages}<br>
+                Read: ${odinLibrary[i].readStatus}<br>
+                `;
+        const changeButton = document.createElement('button'); 
+        changeButton.classList.add('book-stat-btn');
+        changeButton.textContent = 'Change Status';
+        const removeButton = document.createElement('button');
+        removeButton.classList.add('book-remove-btn');
+        removeButton.textContent = 'Remove book';   
+        bookDiv.appendChild(changeButton);
+        bookDiv.appendChild(removeButton);
+        bookGrid.appendChild(bookDiv);
     }
     return bookGrid;
 }
 
 function removeBook(book) {                  //function to remove a book from the library
     const delIndex = odinLibrary.indexOf(book);
-    var removedItem = odinLibrary.splice(delIndex, 1);
-    return odinLibrary;
+    if (delIndex !== -1) {
+        odinLibrary.splice(delIndex, 1);
+    } else {
+        window.alert("Book doesn't exist!");
+    }
 }
 
-function statusChange(book) {                //to change the read status of the book in the book library
-    changeBtn.forEach(btn => btn.addEventListener('click', function(){
-        book.style.backgroundColor = 'green';
-    }));
+function windowButtonEventListeners() {
+    bookGrid.addEventListener('click', function(e){
+        if(e.target.classList.contains('book-remove-btn')) {
+            const bookDiv = e.target.parentElement;
+            const name = bookDiv.childNodes[1].nodeValue.split(": ")[1];
+            const bookToRemove = odinLibrary.find(book => book.bookName === name);
+            removeBook(bookToRemove);
+            bookDiv.remove();
+        }
+        else if(e.target.classList.contains('book-stat-btn')) {
+            const bookDiv = e.target.parentElement;
+            const name = bookDiv.childNodes[1].nodeValue.split(": ")[1];
+            const bookToChange = odinLibrary.find(book => book.bookName === name);
+            bookToChange.readStatus = bookToChange.readStatus === 'Yes' ? 'No' : 'Yes';
+            bookDiv.childNodes[7].nodeValue = `Read: ${bookToChange.readStatus}`;
+        }
+    })
 }
+
+modalLogic();
+displayBooks(odinLibrary);
+windowButtonEventListeners();
+

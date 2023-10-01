@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
-    <script src="./script.js" async></script>
+    <script src="./script.js"></script>
 </head>
 <body>
     <div class="page-title">
@@ -88,6 +88,25 @@
     </div>
     <div id="footer-text">
         <a href="https://github.com/tamermint/Odin-Library" target="_blank" class="contact">CREATED BY tamermint @ <img id="footer-git" src="./assets/github-mark.svg"></a>
+    </div>
+    <div id="bookModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <form id="bookForm">
+                <label for="name">Name:</label>
+                <input type="text" id="name" required>
+                <label for="author">Author:</label>
+                <input type="text" id="author" required>
+                <label for="pages">Pages:</label>
+                <input type="number" id="pages" required>
+                <label for="read">Read:</label>
+                <select id="read">
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+                <input type="submit" value="Add Book">
+            </form>
+        </div>
     </div>
 </body>
 </html>
